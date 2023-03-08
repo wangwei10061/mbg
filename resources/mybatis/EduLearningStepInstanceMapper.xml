@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.educoder.core.persistence.mapper.EduLearningStepInstanceMapper" >
+  <resultMap id="BaseResultMap" type="net.educoder.core.persistence.beans.EduLearningStepInstance" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="step_id" property="stepId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="BIT" />
+    <result column="choice_step_user_choice" property="choiceStepUserChoice" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="ide_step_user_code" property="ideStepUserCode" jdbcType="LONGVARCHAR" />
+    <result column="ide_step_user_output" property="ideStepUserOutput" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from edu_learning_step_instance
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.educoder.core.persistence.beans.EduLearningStepInstance" >
+    insert into edu_learning_step_instance (id, step_id, user_id, 
+      state, choice_step_user_choice, create_time, 
+      update_time, ide_step_user_code, ide_step_user_output
+      )
+    values (#{id,jdbcType=BIGINT}, #{stepId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{state,jdbcType=BIT}, #{choiceStepUserChoice,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{ideStepUserCode,jdbcType=LONGVARCHAR}, #{ideStepUserOutput,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="net.educoder.core.persistence.beans.EduLearningStepInstance" >
+    update edu_learning_step_instance
+    set step_id = #{stepId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      state = #{state,jdbcType=BIT},
+      choice_step_user_choice = #{choiceStepUserChoice,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      ide_step_user_code = #{ideStepUserCode,jdbcType=LONGVARCHAR},
+      ide_step_user_output = #{ideStepUserOutput,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, step_id, user_id, state, choice_step_user_choice, create_time, update_time, 
+    ide_step_user_code, ide_step_user_output
+    from edu_learning_step_instance
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, step_id, user_id, state, choice_step_user_choice, create_time, update_time, 
+    ide_step_user_code, ide_step_user_output
+    from edu_learning_step_instance
+  </select>
+</mapper>
